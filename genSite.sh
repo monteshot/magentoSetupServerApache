@@ -1,20 +1,21 @@
 #!/bin/bash
 DOMENNAME=$1
+PREVIOUS_USERNAME=$2
 sudo cat << EOF
 <VirtualHost *:80>
     ServerName $DOMENNAME
     ServerAlias www.$DOMENNAME
     ServerAdmin webmaster@$DOMENNAME
-    DocumentRoot /home/monteshot/ApacheSites/$DOMENNAME/content/
-    ErrorLog /home/monteshot/ApacheSites/$DOMENNAME/log/$DOMENNAME.error.log
-    CustomLog /home/monteshot/ApacheSites/$DOMENNAME/log/$DOMENNAME.access.log combined
+    DocumentRoot /home/$PREVIOUS_USERNAME/ApacheSites/$DOMENNAME/content/
+    ErrorLog /home/$PREVIOUS_USERNAME/ApacheSites/$DOMENNAME/log/$DOMENNAME.error.log
+    CustomLog /home/$PREVIOUS_USERNAME/ApacheSites/$DOMENNAME/log/$DOMENNAME.access.log combined
     
 #     RewriteEngine On
 #     RewriteCond %{HTTPS} off
 #     RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
     
     LogLevel warn
-    <Directory /home/monteshot/ApacheSites/$DOMENNAME/content/>
+    <Directory /home/$PREVIOUS_USERNAME/ApacheSites/$DOMENNAME/content/>
         Options Indexes FollowSymLinks
         AllowOverride All
         Require all granted
@@ -38,10 +39,10 @@ sudo cat << EOF
 		</Directory>
 		
 		
-        DocumentRoot /home/monteshot/ApacheSites/$DOMENNAME/content/
-        ErrorLog /home/monteshot/ApacheSites/$DOMENNAME/log/$DOMENNAME.error.log
-        CustomLog /home/monteshot/ApacheSites/$DOMENNAME/log/$DOMENNAME.access.log combined
-        <Directory /home/monteshot/ApacheSites/$DOMENNAME/content/>
+        DocumentRoot /home/$PREVIOUS_USERNAME/ApacheSites/$DOMENNAME/content/
+        ErrorLog /home/$PREVIOUS_USERNAME/ApacheSites/$DOMENNAME/log/$DOMENNAME.error.log
+        CustomLog /home/$PREVIOUS_USERNAME/ApacheSites/$DOMENNAME/log/$DOMENNAME.access.log combined
+        <Directory /home/$PREVIOUS_USERNAME/ApacheSites/$DOMENNAME/content/>
             Options Indexes FollowSymLinks
             AllowOverride All
             Require all granted
